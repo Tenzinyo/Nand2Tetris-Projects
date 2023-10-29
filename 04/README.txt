@@ -1,0 +1,2 @@
+Project 4
+Acknowledgement: I would like to thank So.Fabian and Sr.Ahmed for helping me with this project. Fabian helped me understand Mult and Fabian and I worked on Fill together with the help from CS 210 Tutor Ahmed, who really helped me understand the logic behind the CPU emulator and the topic 4 in general.
