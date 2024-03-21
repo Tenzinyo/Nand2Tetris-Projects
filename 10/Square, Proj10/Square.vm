@@ -1,0 +1,27 @@
+push constant 3
+call Memory.alloc 1
+pop pointer 0
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+label IF_FALSE0
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+label IF_FALSE0
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+label IF_FALSE0
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+label IF_FALSE0
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+label IF_FALSE0
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+label IF_FALSE0

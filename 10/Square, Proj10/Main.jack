@@ -1,0 +1,31 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/10/Square/Main.jack
+//
+// Additional coverage added by Cary Gray, 2022
+
+/**
+ * The Main class initializes a new Square Dance game and starts it.
+ */
+class Main {
+
+    /** Initializes a new game and starts it. */    
+    function void main() {
+        var SquareGame game;
+
+        let game = SquareGame.new();
+        do game.run();
+	do game.dispose();
+
+        return;
+    }
+
+    function void do2coverage() {
+        /* coverage tests */
+        // function call must use qualified name
+        do do2coverage();
+        do Main.do2coverage();
+        return;
+    }
+}
