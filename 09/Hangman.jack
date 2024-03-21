@@ -1,0 +1,121 @@
+/**
+ * The Hangman game
+ */
+
+class HangmanGame {
+  static String word;
+  field int remainingGuesses, currentGallowIndex;
+  field Array guessed, gallows;
+
+  constructor HangmanGame new() {
+    this.word = "apples";
+    this.gallows = Array.new(9);
+    this.guessed = Array.new(6);
+    this.gallows[0] = "";
+    this.gallows[1] = "   _______\n   |      \n   |      \n   |      \n   |      \n   |      \n___|___   ";
+    this.gallows[2] = "   _______\n   |      \n   |      \n   |      \n   |      \n   |      \n___|___   ";
+    this.gallows[3] = "   _______\n   |      \n   |      \n   |      \n   |      \n   |      \n___|___   ";
+    this.gallows[4] = "   _______\n   |      \n   |      \n   |      \n   |      \n   |      \n___|___   ";
+    this.gallows[5] = "   _______\n   |      \n   |      \n   |      \n   |      \n   |      \n___|___   ";
+    this.gallows[6] = "   _______\n   |      \n   |      \n   |      \n   |      \n   |      \n___|___   ";
+    this.gallows[7] = "   _______\n   |      \n   |      \n   |      \n   |      \n   |      \n___|___   ";
+    this.gallows[8] = "   _______\n   |      \n   |      \n   |      \n   |      \n   |      \n___|___   ";
+
+  return this;
+  }
+
+  method boolean isWordGuessed() {
+    var int i;
+    var boolean guess;
+    
+    let i = 0;
+
+    while (i < 6) {
+      let guess = this.guessed[i];
+      if (guess == false) {
+        return false;
+      }
+
+      let i = i + 1;
+    }
+    return true;
+  }
+
+  method boolean isGuessCorrect(char guess) {
+    var boolean found;
+    var int i;
+    let i = 0;
+
+    let found = false;
+    while (i < 6) {
+      if (this.word.charAt(i) == guess) {
+        this.guessed[i] = true;
+        found = true;
+      }
+
+      let i = i + 1;
+    }
+    return found;
+  }
+
+  method void play() {
+    var int remainingGuesses, currentGallowIndex;
+    var int i, j, k;
+    // Set up game
+    let i = 0;
+    let k = 0;
+    let j = 0;
+    while (i < 6) {
+      let this.guessed[i] = false;
+      let i = i + 1;
+    }
+    let remainingGuesses = 6;
+    let currentGallowIndex = 0;
+
+    // Setting up
+    do Screen.init();
+    do Screen.clearScreen();
+    do Keyboard.init();
+    do Output.init();
+    do Memory.poke(16384, this.gallows[0]);
+    do Memory.poke(16384 + 40, "Guess the word: ");
+    while (k < 6) {
+      do Memory.poke(16384 + 52 + (i * 2), "_");
+        do Memory.poke(16384 + 40, "Guess the word: ");
+        while (j < 6) {
+            do Memory.poke(16384 + 52 + (i * 2), "_");
+            let j = j + 1;
+        }
+        do Memory.poke(16384 + 52 + (6 * 2), "\n\nGuess a letter: ");
+
+        // Main game loop
+        while (remainingGuesses > 0 && !isWordGuessed()) {
+            // Get user input
+            let char guess = Keyboard.keyPressed();
+            if (guess != "") {
+                // Check if guess is correct
+                if (isGuessCorrect(guess)) {
+                    Output.printString("Correct!\n");
+                } else {
+                    this.remainingGuesses = this.remainingGuesses - 1;
+                    this.currentGallowIndex = this.currentGallowIndex + 1;
+                    do Memory.poke(16384, this.gallows[this.currentGallowIndex]);
+                    Output.printString("Incorrect!\n");
+                }
+            }
+        }
+      let k = k + 1;
+    }
+  }
+}
+
+class Main{
+   function void main(){
+      var Hangman game;
+      let game = Hangman.new();
+      do game.play();
+      //do game.dispose();
+      return;
+   }
+  }
+}
